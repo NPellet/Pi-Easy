@@ -655,7 +655,7 @@ class Navigation extends Security {
 		global $_baseUrl;
 		
 		$this -> Page -> addJs(array(
-			$_baseUrl . FOLDER_LIBS_JQUERY . 'jquery-1.6.1.min.js',
+			$_baseUrl . FOLDER_LIBS_JQUERY . 'jquery-1.8.1.min.js',
 			$_baseUrl . FOLDER_LIBS_JAVASCRIPT . 'plugins.js',
 			$_baseUrl . FOLDER_LIBS_JAVASCRIPT . 'overlay.js',
 			$_baseUrl . FOLDER_LIBS_JAVASCRIPT . 'remove.js',
