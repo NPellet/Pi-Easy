@@ -87,12 +87,30 @@ class Filemanager extends Security {
 
 				Filemanager::remove($filePath . '/' . $file);
 			}
-			//return true;
 		}
 		return (is_dir($filePath) ? rmdir($filePath) : unlink($filePath)) ? true : ($logError ? self::log('file:0:10') : false);
 	}
+
+	public static function empty($dirPath) {
+
+		if(is_dir($dirPath)) {
+			
+			$dir = opendir($dirPath);
+			while($file = readdir($dir)) {
+				
+				if($file == '.' || $file == '..')
+					continue;
+
+				Filemanager::remove($filePath . '/' . $file);
+			}
+		}
+	}
 	
-	
+	public static function emptyTempFolder() {
+		global $_baseUrl;
+		self::empty($_baseUrl . DATA_ROOT_REL . FOLDER_UPLOAD_TEMP);
+	}
+
 	public static function parse($filename) {
 	
 		$fname = strrpos($filename, '/') ? substr($filename, strrpos($filename, '/') + 1) : $filename;

@@ -119,16 +119,15 @@ class FieldPicture extends Field {
 					
 					rename($_baseUrl . DATA_ROOT_REL . FOLDER_UPLOAD_TEMP . $image, $this -> imgFolder . $image);	
 					chmod($this -> imgFolder . $image, 0777);
-					
+					FileManager::emptyTempFolder();
+
 					$Infos = new InfosFile($this -> imgFolder . $image);
 					$Infos -> setProp('name', $fname);
 					$Infos -> setProp('ext', $value['ext'][$key]);
 					$Infos -> setProp('title', $value['title'][$key]);
 					$Infos -> setProp('description', $value['desc'][$key]);
 					$Infos -> setMime();
-					
 					$Infos -> save();
-									
 					$this -> createThumbImage($this -> imgFolder . $image, $image, array($fname, $fext));			
 				}
 			}

@@ -69,6 +69,8 @@ class FieldFile extends Field {
 					
 				rename($_baseUrl . DATA_ROOT_REL . FOLDER_UPLOAD_TEMP . $file, $this -> fleFolder . $file);
 				$Infos = new InfosFile($this -> fleFolder . $file);
+
+				FileManager::emptyTempFolder();
 				
 				$Infos -> setProp('name', $fname);
 				$Infos -> setProp('ext', $value['ext'][$key]);
