@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*****************************************************/
+/*          STYLE LIE AU PLUGIN DES GALERIES        */
+/****************************************************/
+
+div#ListImages div.Image.Galerie {
+	display: block;
+	float: left;
+	margin-right: 20px;
+}
+
+#FBSynch {
+	width: 100%;
+}
+
+/* liste des albums à synchroniser avec Facebook */
+
+ul.SynchroSession {
+	margin-bottom: 20px;	
+}
+
+ul.SynchroSession li {
+	padding: 10px;
+	margin-bottom: 10px;
+	background: #E5F3FB;
+	cursor: pointer;
+}
+
+ul.SynchroSession li img {
+	float: left;
+	margin-right: 7px;
+	width: 70px;
+}
+
+ul.SynchroSession li.New {
+	background: #FFFCCE;
+}
+
+ul.SynchroSession li .AlbumLabel {
+	font-weight: bold;
+	font-size: 17px;
+}
+
+ul.SynchroSession li .albumstate, ul.SynchroSession li .nbnewimages {
+	font-weight: normal;
+	font-size: 14px;
+}
+
+ul.SynchroSession li .nbnewimages {
+	font-weight: normal;
+	font-size: 14px;
+}
+
+ul.SynchroSession li.Selected {
+	background: #CFE1CC;
+}

@@ -1,0 +1,1372 @@
+@charset "utf-8";
+/* CSS Document */
+
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	} 
+	
+body, table {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	color: #000;
+	vertical-align: top;
+	text-align: left;
+	font-size: 15px;
+}
+
+p, ul, h1, h2, h3, h4, h5 {
+	margin: 0;
+	padding: 0;
+}
+
+/**************************/
+/*       STRUCTURE      */
+/**************************/
+
+#Pieasy {
+	width: 100%;
+	height: 100%;
+}
+
+#Pieasy td#ColMenu {
+	width: 215px;
+	background: #E5F3FB;
+	vertical-align: top;
+	padding-bottom: 30px;
+}
+
+#Pieasy td#Header {
+	height: 150px;
+	background: url(images/pi-easy_header.png) repeat-x left top #E5F3FB;
+	vertical-align: middle;
+	color: #0065A6;
+	font-size: 30px;
+	padding: 20px;
+	font-weight: normal;
+}
+
+#Pieasy td#Header img {
+	height: 100px;
+	margin-right: 20px;
+	float: left;
+}
+
+#Pieasy td#Header span {
+	float: left;
+	margin-top: 30px;
+}
+
+#Pieasy #ColMain {
+	vertical-align: top;
+	padding-bottom: 30px;
+}
+
+#Pieasy #Logo {
+	background: url(images/pi-easy_logo_top_2-0.png) center no-repeat;
+	width: 215px;
+	height: 150px;
+}
+
+
+/**************************/
+/*         Général        */
+/**************************/
+
+.Spacer {
+	clear: both;	
+}
+
+.Hidden {
+	display: none;	
+}
+
+/******************************/
+/*         Liens              */
+/******************************/	
+	
+	a, a:visited, a:active  {
+		color: #0065A6;
+		text-decoration: underline;
+		}
+	
+	a:hover, a:focus {
+		color: #0065A6;
+		text-decoration: none;	
+		}
+		
+
+
+/**************************/
+/*         MENU           */
+/**************************/
+
+#Pieasy td#ColMenu ul, #Pieasy td#ColMenu li, #Pieasy td#ColMenu ol {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	overflow: hidden;
+	text-align: right;
+}
+
+#Pieasy td#ColMenu ul.Menu {
+	background: #FFFFFF;
+	padding-bottom: 10px;
+}
+
+#Pieasy td#ColMenu li.Element a {
+	width: 195px;
+	padding: 0px 10px 0px 10px;
+	height: 18px;
+	margin-bottom: 3px;
+	color: #0065A6;
+	font-size: 14px;
+	display: block;	
+	background: #DDEFFA;
+}
+
+#Pieasy td#ColMenu li.Element a, #Pieasy td#ColMenu li.Element a:visited, #Pieasy td#ColMenu li.Element a:active {
+	color: #0065A6;
+	text-decoration: none;
+}
+
+#Pieasy td#ColMenu li.Element a:hover, #Pieasy td#ColMenu li.Element.Selected {
+	color: #FFF;
+	text-decoration: none;
+	background: #468ABE;	
+}
+
+
+#Pieasy td#ColMenu li.SubElement a {
+	width: 195px;
+	padding: 0px 10px 0px 10px;
+	height: 18px;
+	margin-bottom: 3px;
+	color: #0065A6;
+	font-size: 13px;
+	display: block;	
+	background: #EEF9FF;
+}
+
+#Pieasy td#ColMenu li.SubElement a, #Pieasy td#ColMenu li.SubElement a:visited, #Pieasy td#ColMenu li.SubElement a:active {
+	color: #0065A6;
+	text-decoration: none;
+}
+
+#Pieasy td#ColMenu li.SubElement a:hover, #Pieasy td#ColMenu li.SubElement.Selected {
+	color: #FFF;
+	text-decoration: none;
+	background: #a2c6de;	
+}
+
+
+
+
+#Pieasy td#ColMenu li.Title {
+	height: 25px;
+	width: 195px;
+	padding: 0px 10px 0px 10px;
+	background: -moz-linear-gradient(top, #81acce, #1b69a6);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#81acce), to(#1b69a6));
+	color: #FFF;
+	font-size: 18px;
+	margin-bottom: 2px;
+}
+
+#Pieasy td#ColMenu li.Title a, #Pieasy td#ColMenu li.Title a:visited, #Pieasy td#ColMenu li.Title a:active {
+	background-image: -moz-linear-gradient(top, #81acce, #1b69a6);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#81acce), to(#1b69a6));
+	color: #FFF;
+	font-size: inherit;
+	text-decoration: underline;
+}
+
+#Pieasy td#ColMenu li.Title a:hover {
+	color: #FFF;
+	text-decoration: none;
+}
+
+/**************************/
+/*        TOOLBAR         */
+/**************************/
+
+#Pieasy #ColMain #Toolbar {
+	height: 25px;
+	background-image: -moz-linear-gradient(top, #CDE9F7, #A4D8F0);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#CDE9F7), to(#A4D8F0));
+	padding: 0px 20px 0px 20px;
+	color: #0065A6;
+}
+
+#Pieasy #ColMain #Toolbar ul, #Pieasy #ColMain #Toolbar li, #Pieasy #ColMain #Toolbar ol {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#Pieasy #ColMain #Toolbar ul#Menu {
+	float: left;
+}
+
+#Pieasy #ColMain #Toolbar ul#Connect {
+	float: right;
+}
+
+#Pieasy #ColMain #Toolbar li {
+	display: block;
+	float: left;
+	margin-right: 10px;
+}
+
+#Pieasy #ColMain #Toolbar li a {
+	display: block;
+	float: left;
+	height: 22px;
+	padding-top: 3px;
+}
+
+#Pieasy #ColMain #Toolbar li.Connected {
+	height: 22px;
+	padding-top: 3px;
+}
+
+#Pieasy #ColMain #Toolbar li a, #Pieasy #ColMain #Toolbar li a:visited, #Pieasy #ColMain #Toolbar li a:active {
+	color: #0065A6;
+	text-decoration: none;
+	padding-left: 25px;
+}
+
+#Pieasy #ColMain #Toolbar li a:hover {
+	color: #468ABE;
+	text-decoration: none;
+	}
+	
+#Pieasy #ColMain #Toolbar li.Facebook, #Pieasy #ColMain #Toolbar li.Facebook a {
+	padding: 0;
+	margin-top: 1px;
+}
+
+#Pieasy #ColMain #Toolbar li.Facebook span, #Pieasy #ColMain #Toolbar li.Facebook a span {
+	padding-top: 2px;
+	float: right;
+}
+
+
+
+/* Bouton Config */
+#Pieasy #ColMain #Toolbar li.Config a, #Pieasy #ColMain #Toolbar li.Config a:visited, #Pieasy #ColMain #Toolbar li.Config a:active {
+	background: url(images/pi-easy_toolbar_logos_config.png) no-repeat left top;
+}
+
+#Pieasy #ColMain #Toolbar li.Config a:hover {
+	background: url(images/pi-easy_toolbar_logos_config.png) no-repeat left bottom;
+	}
+	
+/* Bouton Users */
+#Pieasy #ColMain #Toolbar li.Users a, #Pieasy #ColMain #Toolbar li.Users a:visited, #Pieasy #ColMain #Toolbar li.Users a:active {
+	background: url(images/pi-easy_toolbar_logos_users.png) no-repeat left top;
+}
+
+#Pieasy #ColMain #Toolbar li.Users a:hover {
+	background: url(images/pi-easy_toolbar_logos_users.png) no-repeat left bottom;
+	}
+	
+/* Bouton Aide */
+#Pieasy #ColMain #Toolbar li.Help a, #Pieasy #ColMain #Toolbar li.Help a:visited, #Pieasy #ColMain #Toolbar li.Help a:active {
+	background: url(images/pi-easy_toolbar_logos_aide.png) no-repeat left top;
+}
+
+#Pieasy #ColMain #Toolbar li.Help a:hover {
+	background: url(images/pi-easy_toolbar_logos_aide.png) no-repeat left bottom;
+	}
+	
+	
+/* Bouton Disconnect */
+#Pieasy #ColMain #Toolbar li.Disconnect a, #Pieasy #ColMain #Toolbar li.Disconnect a:visited, #Pieasy #ColMain #Toolbar li.Disconnect a:active {
+	background: url(images/pi-easy_toolbar_logos_disconnect.png) no-repeat left top;
+}
+
+#Pieasy #ColMain #Toolbar li.Disconnect a:hover {
+	background: url(images/pi-easy_toolbar_logos_disconnect.png) no-repeat left bottom;
+	}
+
+/**************************/
+/*         MAIN          */
+/**************************/
+
+#Main {
+	padding: 20px;
+	padding-top: 30px;
+}
+
+
+#Main #Navigation {
+	color: #0065A6;
+	border-bottom: 2px solid #0065A6;
+	margin-bottom: 20px
+}
+
+#Main #Navigation .Niv0 {
+	font-size: 20px;
+}
+
+
+#Main #Navigation .Niv1 {
+	font-size: 18px;
+}
+
+
+#Main #Navigation .Niv2 {
+	font-size: 16px;
+}
+
+
+/**************************/
+/*        ACTIONS         */
+/**************************/
+
+ul ,li, ol {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+ul.Actions {
+	margin-bottom: 20px;
+	height: 25px;
+}
+
+.Actions li a {
+	display: block;
+	float: left;
+	height: 23px;
+	padding-top: 2px;
+	padding-right: 10px;
+	/* width: 80px; */
+	margin-right: 10px;
+	background-image: -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	cursor: pointer;
+}
+
+.Actions li a, .Actions li a:visited, .Actions li a:active {
+	color: #0065A6;
+	text-decoration: none;
+	padding-left: 30px;
+}
+
+.Actions li a:hover {
+	color: #000;
+}
+
+.Button {
+	font-size: 16px;
+}
+
+/* Bouton Defaut */
+.Actions li.Button.Defaut a, .Actions li.Button.Defaut a:visited {
+		background: url(images/pi-easy_actions_logos_defaut.png) left top no-repeat, -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+		background: url(images/pi-easy_actions_logos_defaut.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+}
+
+.Actions li.Button.Defaut a:hover {
+		background: url(images/pi-easy_actions_logos_defaut.png) left bottom no-repeat, -moz-linear-gradient(top, #98c1db, #0769a8);
+		background: url(images/pi-easy_actions_logos_defaut.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#98c1db), to(#0769a8));
+}
+
+.Actions li.Button.Defaut.Disabled a {
+		background: url(images/pi-easy_actions_logos_defaut.png) left bottom no-repeat, -moz-linear-gradient(top, #f3f3f3, #c5c5c5);
+		background: url(images/pi-easy_actions_logos_defaut.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#c5c5c5));
+		color: #9a9a9a;
+		cursor: default;
+}
+
+/* Bouton Add */
+.Actions li.Button.Add a, .Actions li.Button.Add a:visited {
+		background: url(images/pi-easy_actions_logos_add.png) left top no-repeat, -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+		background: url(images/pi-easy_actions_logos_add.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+}
+
+.Actions li.Button.Add a:hover {
+		background: url(images/pi-easy_actions_logos_add.png) left bottom no-repeat, -moz-linear-gradient(top, #98c1db, #0769a8);
+		background: url(images/pi-easy_actions_logos_add.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#98c1db), to(#0769a8));
+}
+
+.Actions li.Button.Add.Disabled a {
+		background: url(images/pi-easy_actions_logos_add.png) left bottom no-repeat, -moz-linear-gradient(top, #f3f3f3, #c5c5c5);
+		background: url(images/pi-easy_actions_logos_add.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#c5c5c5));
+		color: #9a9a9a;
+		cursor: default;
+}
+
+
+/* Bouton Edit */
+.Actions li.Button.Edit a, .Actions li.Button.Edit a:visited {
+		background: url(images/pi-easy_actions_logos_edit.png) left top no-repeat, -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+		background: url(images/pi-easy_actions_logos_edit.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+}
+
+.Actions li.Button.Edit a:hover {
+		background: url(images/pi-easy_actions_logos_edit.png) left bottom no-repeat, -moz-linear-gradient(top, #98c1db, #0769a8);
+		background: url(images/pi-easy_actions_logos_edit.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#98c1db), to(#0769a8));
+}
+
+.Actions li.Button.Edit.Disabled a {
+		background: url(images/pi-easy_actions_logos_edit.png) left bottom no-repeat, -moz-linear-gradient(top, #f3f3f3, #c5c5c5);
+		background: url(images/pi-easy_actions_logos_edit.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#c5c5c5));
+		color: #9a9a9a;
+		cursor: default;
+}
+
+/* Bouton Delete */
+.Actions li.Button.Remove a, .Actions li.Button.Remove a:visited {
+		background: url(images/pi-easy_actions_logos_delete.png) left top no-repeat, -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+		background: url(images/pi-easy_actions_logos_delete.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+}
+
+.Actions li.Button.Remove a:hover {
+		background: url(images/pi-easy_actions_logos_delete.png) left bottom no-repeat, -moz-linear-gradient(top, #98c1db, #0769a8);
+		background: url(images/pi-easy_actions_logos_delete.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#98c1db), to(#0769a8));
+}
+
+.Actions li.Button.Remove.Disabled a {
+		background: url(images/pi-easy_actions_logos_delete.png) left bottom no-repeat, -moz-linear-gradient(top, #f3f3f3, #c5c5c5);
+		background: url(images/pi-easy_actions_logos_delete.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#c5c5c5));
+		color: #9a9a9a;
+		cursor: default;
+}
+
+/* Bouton Tri */
+.Actions li.Button.Sort a, .Actions li.Button.Sort a:visited {
+		background: url(images/pi-easy_actions_logos_sort.png) left top no-repeat, -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+		background: url(images/pi-easy_actions_logos_sort.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+}
+
+.Actions li.Button.Sort a:hover {
+		background: url(images/pi-easy_actions_logos_sort.png) left bottom no-repeat, -moz-linear-gradient(top, #98c1db, #0769a8);
+		background: url(images/pi-easy_actions_logos_sort.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#98c1db), to(#0769a8));
+}
+
+.Actions li.Button.Sort.Disabled a {
+		background: url(images/pi-easy_actions_logos_sort.png) left bottom no-repeat, -moz-linear-gradient(top, #f3f3f3, #c5c5c5);
+		background: url(images/pi-easy_actions_logos_sort.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#c5c5c5));
+		color: #9a9a9a;
+		cursor: default;
+}
+
+/* Bouton Module */
+.Actions li.Button.Module a, .Actions li.Button.Module a:visited {
+		background: url(images/pi-easy_actions_logos_module.png) left top no-repeat, -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+		background: url(images/pi-easy_actions_logos_module.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+}
+
+.Actions li.Button.Module a:hover {
+		background: url(images/pi-easy_actions_logos_module.png) left bottom no-repeat, -moz-linear-gradient(top, #98c1db, #0769a8);
+		background: url(images/pi-easy_actions_logos_module.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#98c1db), to(#0769a8));
+}
+
+.Actions li.Button.Module.Disabled a {
+		background: url(images/pi-easy_actions_logos_module.png) left bottom no-repeat, -moz-linear-gradient(top, #f3f3f3, #c5c5c5);
+		background: url(images/pi-easy_actions_logos_module.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#c5c5c5));
+		color: #9a9a9a;
+		cursor: default;
+}
+
+/* Bouton Champs */
+.Actions li.Button.Fields a, .Actions li.Button.Fields a:visited {
+		background: url(images/pi-easy_actions_logos_fields.png) left top no-repeat, -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+		background: url(images/pi-easy_actions_logos_fields.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+}
+
+.Actions li.Button.Fields a:hover {
+		background: url(images/pi-easy_actions_logos_fields.png) left bottom no-repeat, -moz-linear-gradient(top, #98c1db, #0769a8);
+		background: url(images/pi-easy_actions_logos_fields.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#98c1db), to(#0769a8));
+}
+
+.Actions li.Button.Fields.Disabled a {
+		background: url(images/pi-easy_actions_logos_fields.png) left bottom no-repeat, -moz-linear-gradient(top, #f3f3f3, #c5c5c5);
+		background: url(images/pi-easy_actions_logos_fields.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#c5c5c5));
+		color: #9a9a9a;
+		cursor: default;
+}
+
+/* Bouton Rubrique */
+.Actions li.Button.Rubrique a, .Actions li.Button.Rubrique a:visited {
+		background: url(images/pi-easy_actions_logos_rubrique.png) left top no-repeat, -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+		background: url(images/pi-easy_actions_logos_rubrique.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+}
+
+.Actions li.Button.Rubrique a:hover {
+		background: url(images/pi-easy_actions_logos_rubrique.png) left bottom no-repeat, -moz-linear-gradient(top, #98c1db, #0769a8);
+		background: url(images/pi-easy_actions_logos_rubrique.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#98c1db), to(#0769a8));
+}
+
+.Actions li.Button.Rubrique.Disabled a {
+		background: url(images/pi-easy_actions_logos_rubrique.png) left bottom no-repeat, -moz-linear-gradient(top, #f3f3f3, #c5c5c5);
+		background: url(images/pi-easy_actions_logos_rubrique.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#c5c5c5));
+		color: #9a9a9a;
+		cursor: default;
+}
+
+/* Bouton Synchro */
+.Actions li.Button.Synchro a, .Actions li.Button.Synchro a:visited {
+		background: url(images/pi-easy_actions_logos_sync.png) left top no-repeat, -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+		background: url(images/pi-easy_actions_logos_sync.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+}
+
+.Actions li.Button.Synchro a:hover {
+		background: url(images/pi-easy_actions_logos_sync.png) left bottom no-repeat, -moz-linear-gradient(top, #98c1db, #0769a8);
+		background: url(images/pi-easy_actions_logos_sync.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#98c1db), to(#0769a8));
+}
+
+.Actions li.Button.Synchro.Disabled a {
+		background: url(images/pi-easy_actions_logos_sync.png) left bottom no-repeat, -moz-linear-gradient(top, #f3f3f3, #c5c5c5);
+		background: url(images/pi-easy_actions_logos_sync.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#c5c5c5));
+		color: #9a9a9a;
+		cursor: default;
+}
+
+/* Bouton Lister */
+.Actions li.Button.List a, .Actions li.Button.List a:visited {
+		background: url(images/pi-easy_actions_logos_list.png) left top no-repeat, -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+		background: url(images/pi-easy_actions_logos_list.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+}
+
+.Actions li.Button.List a:hover {
+		background: url(images/pi-easy_actions_logos_list.png) left bottom no-repeat, -moz-linear-gradient(top, #98c1db, #0769a8);
+		background: url(images/pi-easy_actions_logos_list.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#98c1db), to(#0769a8));
+}
+
+.Actions li.Button.List.Disabled a {
+		background: url(images/pi-easy_actions_logos_list.png) left bottom no-repeat, -moz-linear-gradient(top, #f3f3f3, #c5c5c5);
+		background: url(images/pi-easy_actions_logos_list.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#c5c5c5));
+		color: #9a9a9a;
+		cursor: default;
+}
+
+/* Bouton Images */
+.Actions li.Button.Images a, .Actions li.Button.Images a:visited {
+		background: url(images/pi-easy_actions_logos_images.png) left top no-repeat, -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+		background: url(images/pi-easy_actions_logos_images.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+}
+
+.Actions li.Button.Images a:hover {
+		background: url(images/pi-easy_actions_logos_images.png) left bottom no-repeat, -moz-linear-gradient(top, #98c1db, #0769a8);
+		background: url(images/pi-easy_actions_logos_images.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#98c1db), to(#0769a8));
+}
+
+.Actions li.Button.Images.Disabled a {
+		background: url(images/pi-easy_actions_logos_images.png) left bottom no-repeat, -moz-linear-gradient(top, #f3f3f3, #c5c5c5);
+		background: url(images/pi-easy_actions_logos_images.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#c5c5c5));
+		color: #9a9a9a;
+		cursor: default;
+}
+
+/* Bouton Reload */
+.Actions li.Button.Reload a, .Actions li.Button.Reload a:visited {
+		background: url(images/pi-easy_actions_logos_refresh.png) left top no-repeat, -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+		background: url(images/pi-easy_actions_logos_refresh.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+}
+
+.Actions li.Button.Reload a:hover {
+		background: url(images/pi-easy_actions_logos_refresh.png) left bottom no-repeat, -moz-linear-gradient(top, #98c1db, #0769a8);
+		background: url(images/pi-easy_actions_logos_refresh.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#98c1db), to(#0769a8));
+}
+
+.Actions li.Button.Reload.Disabled a {
+		background: url(images/pi-easy_actions_logos_refresh.png) left bottom no-repeat, -moz-linear-gradient(top, #f3f3f3, #c5c5c5);
+		background: url(images/pi-easy_actions_logos_refresh.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#c5c5c5));
+		color: #9a9a9a;
+		cursor: default;
+}
+
+/* Bouton Valider */
+.Actions li.Button.Selected a, .Actions li.Button.Selected a:visited {
+		background: url(images/pi-easy_actions_logos_validate.png) left top no-repeat, -moz-linear-gradient(top, #afe1b5, #3eb74e);
+		background: url(images/pi-easy_actions_logos_validate.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#afe1b5), to(#3eb74e));
+		color: #000;
+		padding-right: 30px;
+}
+
+.Actions li.Button.Selected a:hover {
+		background: url(images/pi-easy_actions_logos_validate.png) left bottom no-repeat, -moz-linear-gradient(top, #85b97e, #369b36);
+		background: url(images/pi-easy_actions_logos_validate.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#85b97e), to(#369b36));
+}
+
+/* Bouton Annuler */
+.Actions li.Button span.Cancel, .Actions li.Button span.Cancel:visited {
+		background: url(images/pi-easy_actions_logos_cancel.png) left top no-repeat, -moz-linear-gradient(top, #f7a3a6, #ed2229);
+		background: url(images/pi-easy_actions_logos_cancel.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f7a3a6), to(#ed2229));
+		width: 25px;
+		height: 23px;
+		padding-top: 2px;
+		float: left;
+		z-index: 100;
+		margin-left: -35px;
+		cursor: pointer;
+}
+
+.Actions li.Button span.Cancel:hover {
+		background: url(images/pi-easy_actions_logos_cancel.png) left bottom no-repeat, -moz-linear-gradient(top, #f97274, #f2181d);
+		background: url(images/pi-easy_actions_logos_cancel.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f97274), to(#f2181d));
+}
+
+/* Bouton Retour */
+.Actions li.Button.Back a, .Actions li.Button.Back a:visited {
+		background: url(images/pi-easy_actions_logos_back.png) left top no-repeat, -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+		background: url(images/pi-easy_actions_logos_back.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+}
+
+.Actions li.Button.Back a:hover {
+		background: url(images/pi-easy_actions_logos_back.png) left bottom no-repeat, -moz-linear-gradient(top, #98c1db, #0769a8);
+		background: url(images/pi-easy_actions_logos_back.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#98c1db), to(#0769a8));
+}
+
+.Actions li.Button.Back.Disabled a {
+		background: url(images/pi-easy_actions_logos_back.png) left bottom no-repeat, -moz-linear-gradient(top, #f3f3f3, #c5c5c5);
+		background: url(images/pi-easy_actions_logos_back.png) left top no-repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#c5c5c5));
+		color: #9a9a9a;
+		cursor: default;
+}
+
+
+/************************************************/
+/*           MISE EN FORME DES TEXTES           */
+/************************************************/
+
+h1 {
+	color: #0065A6;
+	border-bottom: 2px solid #0065A6;
+	margin-bottom: 20px;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+h2 {
+	color: #0065A6;
+	margin-bottom: 20px;
+	background: #cdeaf7;
+	background: -moz-linear-gradient(top, #cdeaf7, #a4d8f0);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#cdeaf7), to(#a4d8f0));
+	padding: 4px;
+	font-size: 18px;
+	font-weight: normal;
+	-moz-border-radius: 10px 10px 0px 0px;
+	-webkit-border-radius: 10px 10px 0px 0px;
+}
+
+h3 {
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+/*
+
+
+h2 {
+	color: #FFF;
+	padding: 2px 5px 2px 10px;
+	font-size: 1.1;
+	background: -moz-linear-gradient(top, #c4dcec, #81acce);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#c4dcec), to(#81acce));
+	-moz-border-radius: 10px 10px 0px 0px;
+	-webkit-border-radius: 10px 10px 0px 0px;
+	font-weight: normal;
+	margin: 0px;
+	border-bottom: 1px solid #FFF;
+}
+
+*/
+
+/*******************************/
+/*     Tableaux du contenu     */
+/******************************/
+
+
+/*     Tableaux des deux parties     */
+
+table.Wrapper.Entries {
+	width: 100%;
+	margin-bottom: 150px;
+}
+
+table.Wrapper.Entries td {
+	vertical-align: top;
+}
+
+
+table.Wrapper.Entries td.OverviewEntry {
+	width: 30%;
+}
+
+table.Wrapper.Entries td.ListEntries {
+	width: 70%;
+	padding-right: 10px;
+}
+
+table.Wrapper.Entries .OverviewEntry .OverviewHeader {
+	background: -moz-linear-gradient(top, #81acce, #1b69a6);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#81acce), to(#1b69a6));
+	margin: 0;
+	margin-left: -9px;
+	padding: 0;
+	height: 30px;
+}
+
+
+/*     Tableaux des données     */
+
+table.Data {
+	width: 100%;	
+	margin-bottom: 30px;
+	font-size: 12px;
+}
+
+table.Data th {
+	min-width: 100px;
+	padding: 3px 15px 3px 5px;
+	background: -moz-linear-gradient(top, #81acce, #1b69a6);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#81acce), to(#1b69a6));
+	border-left: 1px solid #FFFFFF;
+	color: #FFF;
+	font-size: 13px;
+	text-align: left;
+	height: 30px;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+table.Data td p {
+	margin: inherit;
+}
+
+table.Data td {
+	padding: 5px 15px 5px 5px;
+	border-bottom: 1px solid #0065A6;
+	border-left: 1px solid #0065A6;
+	vertical-align: top;
+	height: 20px;
+	cursor: pointer;
+}
+
+table.Data tr.Higher td {
+	height: 50px;
+}
+
+table.Data td.FirstCol, table.Data th.FirstCol {
+	border-left: none;
+}
+
+table.Data tr.Even td {
+	background: #E5F3FB;
+}
+
+table.Data tr:hover td, table.Data tr.Selected td {
+	background: #bce2fa;
+}
+
+
+
+table.Data.Rights tr:hover td, table.Data.Plugins tr:hover td  {
+	background: none;
+	cursor: inherit;
+}
+
+table.Data td div {
+	height: 20px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+table.Data tr.Higher td div {
+	height: 50px;
+}
+/*     Nombre de pages     */
+
+.Pages {
+	margin-top: 10px;
+	color: #0065A6;
+	line-height: 30px;
+}
+
+.Pages a, .Pages a:visited {
+	cursor: pointer;
+	padding: 2px 7px 2px 7px;
+	border: 1px solid #0065A6;
+	color: #0065A6;
+	text-decoration: none;
+}
+
+.Pages a:hover, .Pages a.Selected {
+	color: #0065A6;
+	background: #E5F3FB;
+	text-decoration: none;
+}
+
+/*******************************/
+/*       ZONE D'OVERVIEW       */
+/******************************/
+
+div.Overview {
+	font-size: 14px;
+	padding: 10px;
+	-moz-box-shadow: #0065A6 1px 1px 1px 1px;
+	-webkit-box-shadow: #0065A6 1px 1px 1px 1px;
+	margin-top: 10px;
+}
+
+div.Overview div.Content {
+	margin: 1px 0px 10px 0px;
+}
+
+div.Overview p {
+	margin: 0px 0px 0px 0px;
+}
+
+div.Overview .Label {
+	padding: 3px 15px 3px 5px;
+	background: -moz-linear-gradient(top, #81acce, #1b69a6);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#81acce), to(#1b69a6));
+	color: #FFF;
+}
+
+/*******************************/
+/*        FORMULAIRES        */
+/******************************/
+
+table.DataForm {
+	width: 100%;
+	font-size: 12px;
+}
+
+table.DataForm.Cols1 th {
+	width: 100%;
+}
+
+table.DataForm.Cols2 th {
+	width: 50%;
+}
+
+table.DataForm.Cols3 th {
+	width: 33%;
+}
+
+table.DataForm th.ColSpacer, table.DataForm td.ColSpacer {
+	width: 30px;
+}
+
+
+
+table.DataForm > tbody > tr > td  {
+	vertical-align: top;
+	padding: 3px 10px 3px 10px;
+	border-bottom: 20px solid #FFF;
+}
+
+table.DataForm td.Title  {
+	font-weight: bold;
+	text-align: right;
+	min-width: 20%;
+	background: #E5F3FB;
+}
+
+table.DataForm div  {
+	margin-bottom: 5px;
+}
+
+table.DataForm #mce_0_tbl div {
+	margin-bottom: 0;
+}
+
+table.DataForm #mce_0_tbl div {
+	margin-bottom: 0;
+}
+
+table.DataForm #mce_0_tbl div {
+	margin-bottom: 0;
+}
+
+table.DataForm .Helper {
+	font-size: 10px;
+	font-style: italic;
+	color: #999;		
+}
+
+table.DataForm .Informations {
+	color: #F90;
+	margin-bottom: 5px;
+}
+
+table.TableUrlEmail {
+	width: 100%;
+}
+
+table.TableUrlEmail td {
+	padding-bottom: 7px;
+}
+
+table.TableUrlEmail td.Label {
+	padding-right: 7px;
+	width: 120px;
+}
+
+input, textarea, input[type=file] {
+	width: 100%;
+	-moz-box-sizing: border-box;
+}
+
+input[type=checkbox] {
+	width: auto;
+}
+
+input, textarea, select {
+	background: #FFF;
+	border: 1px solid #ABC6DD;
+	padding: 3px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #333;
+	font-size: 14px;
+}
+
+input:hover, input:focus, textarea:hover, textarea:focus, select:hover, select:focus {
+	background: #f2f9fd;
+	border: 1px solid #0065A6;
+}
+
+input[type=submit] {
+	background: -moz-linear-gradient(top, #97C7E6, #0065A6);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#97C7E6), to(#0065A6));
+	border: none;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-box-shadow: #CCC 1px 1px 1px;
+	-webkit-box-shadow: #CCC 1px 1px 1px;
+	padding: 3px 15px 3px 15px;
+	color: #FFF;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	cursor: pointer;
+	width: 200px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+input[type=submit]:hover {
+	background: -moz-linear-gradient(top, #acd2eb, #3384b8);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#acd2eb), to(#3384b8));
+	color: #333;
+}
+
+input.Date {
+	width: 100px;
+}
+
+input[type=text] {
+	margin-bottom: 5px;
+}
+
+select {
+	padding: 1px;
+	background: #E5F3FB;
+	border: 1px solid #FFF;
+}
+
+label {
+	float: left;
+}
+
+td.Label {
+	padding-right: 7px;
+}
+
+
+
+/******************************/
+/*       UPLOAD METHODS      */
+/*****************************/
+
+.UploadMethods li {
+	width: 100px;
+	height: 75px;
+	display: block;
+	float: left;
+	margin-right: 50px;
+	margin-bottom: 20px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.UploadMethods li a {
+	color: #000;
+	text-decoration: none;
+}
+
+
+.UploadMethods li span {
+	background: url(images/pi-easy_fichiers_buttons.png);
+	width: 50px;
+	height: 50px;
+	display: block;
+	overflow: hidden;
+	margin-bottom: 10px;
+	margin-left: 25px;
+}
+
+.UploadMethods li.HDD span {
+	background-position: 0px 0px;
+}
+
+.UploadMethods li.HDD:hover span {
+	background-position: 0px -50px;
+}
+
+.UploadMethods li.DnD span {
+	background-position: -50px 0px;
+}
+
+.UploadMethods li.DnD:hover span {
+	background-position: -50px -50px;
+}
+
+.UploadMethods li.URL span {
+	background-position: -100px 0px;
+}
+
+.UploadMethods li.URL:hover span {
+	background-position: -100px -50px;
+}
+
+.UploadMethods li.Media span {
+	background-position: -150px 0px;
+}
+
+.UploadMethods li.Media:hover span {
+	background-position: -150px -50px;
+}
+
+
+.CurrentFile li a {
+	margin-bottom: 7px;
+}
+
+
+.CurrentFile img {
+	max-width: 150px;
+	max-height: 200px;
+}
+
+.CurrentFile img {
+	float: left;
+	margin-right: 15px;
+}
+
+.CurrentFile label {
+	width: 100px;
+}
+
+
+
+/**************************/
+/*       UPLOAD ZONE      */
+/**************************/
+
+
+.DnD div {
+	background: url(images/pi-easy_dragndrop_bg.png) center no-repeat #CFDBEC;
+	border: #0065a6 dashed 2px;
+	height: 150px;
+	width: 50%;
+}
+
+.DnD div.Selected {
+	background: url(images/pi-easy_dragndrop_bg.png) center no-repeat #E8F0FB;
+}
+
+.UploadedFilename input[type=text], .UploadedText input[type=text], .URL input[type=text] {
+	width: 50%
+}
+
+.UploadZone .DragnDrop.Selected td {
+	background-color: #3C9;	
+}
+
+.URL input[type=text] {
+	float: left;
+}
+
+.URL input[type=submit] {
+	float: left;
+	margin-left: 20px;
+}
+
+.UploadZone div.URL {
+	width: 100%;
+}
+
+
+.URL input[type=submit] {
+	margin: 0;
+	width: 75px;
+}
+
+.Extension {
+	width: 30px;
+}
+
+#UploadImages {
+	margin-bottom: 30px;
+	font-size: 12px;
+}
+
+.UploadedInfos {
+	float: left;
+}
+
+.FileList td, .FileList th {
+	padding-right: 50px;
+	font-size: 12px;
+}
+
+/**************************/
+/*       CHAMPS CARTE     */
+/**************************/
+
+.GoogleMap {
+	width: 50%;
+	height: 200px;
+}
+
+/**************************/
+/*       MESSAGES     */
+/**************************/
+
+.Error {
+	color: #9D0000;
+	font-weight: bold;	
+}
+
+table.DataForm td.Title.Error {
+	color: #000000;
+	background: #ffeaea;
+}
+
+.Message {
+	margin-bottom: 15px;
+	padding: 10px;
+	font-style: italic;	
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;}
+
+.Message.Ok, .Green {
+	color: #0E6600;
+	background: #CFE1CC;
+	display: inline-block;
+}
+
+.Message.Error {
+	color: #9D0000;
+	background: #EBCCCC;
+}
+
+/* Style lorsque une entrée est sélectionnée pour être supprimée */
+.Red, .Red td, table.Data tr .Red td, table.Data tr.Selected .Red td {
+		background: #F55549;
+		color: #FFF;
+		padding: 5;
+		vertical-align: middle;
+		font-size: 17px;
+		text-align: center;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;}
+
+
+.Green, .Green td, table.Data tr .Green td, table.Data tr.Selected .Green td {
+		background: #66AA66;
+		color: #0E6600;
+		padding: 5;
+		vertical-align: middle;
+		font-size: 17px;
+		text-align: center;
+}
+
+
+.Orange, .Orange td, table.Data tr .Orange td, table.Data tr.Selected .Orange td {
+		background: #FFBD69;
+		color: #734a15;
+		padding: 5;
+		vertical-align: middle;
+		font-size: 17px;
+		text-align: center;
+}
+
+
+.Grey {
+		color: #333;
+}
+
+.Overlay table {
+	height: 100%;
+	width: 100%;
+}
+
+
+/************************************************/
+/*                  MEDIATHEQUE                 */
+/************************************************/
+
+.SelectMediaType {
+	margin-bottom: 10px;
+}
+
+.Tree {
+	float: left;
+	width: 50%;
+}
+
+.Filetree {
+	padding: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.InfosFile {
+	width: 45%;
+	float: right;
+}
+
+.InfosFile td {
+	text-align: center;
+}
+
+.InfosFile td.Filename {
+	padding-bottom: 10px;
+}
+
+.InfosFile td.Infos, #InfosFile td.Label {
+	text-align: left;
+	font-size: 11px;
+}
+
+.InfosFile img {
+	max-width: 300px;
+}
+
+/************************************************/
+/*                    RUBRIQUES                */
+/************************************************/
+
+#HandleRubriques td {
+	padding: 10px;
+	vertical-align: top;
+	cursor: pointer;
+	width: 250px;
+	height: 100px;
+}
+
+#HandleRubriques td .Title {
+	font-weight: bold;
+	background: -moz-linear-gradient(center top , #81ACCE, #1B69A6) repeat scroll 0 0 transparent;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#81ACCE), to(#1B69A6));
+	padding: 5px;
+	color: #FFFFFF;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#HandleRubriques td .Rubrique {
+	-moz-border-radius: 5px;
+	-moz-box-shadow: #CCC 1px 1px 1px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: #CCC 1px 1px 1px;
+}
+
+#HandleRubriques td .Rubrique .Content {
+	padding: 5px;
+	background: #E5F3FB;
+}
+
+#HandleRubriques td .Rubrique .Entry {
+	padding: 2px;
+	background: #f3f9fc;
+	margin-bottom: 4px;
+}
+
+#HandleRubriques td .Rubrique .Edit {
+	background: #ffd883;
+	padding: 5px;
+	position: absolute;
+	z-index: 1000;
+	margin:  -5px;
+	min-height: 100px;
+}
+
+
+
+/************************************************/
+/*                    POST FB                   */
+/************************************************/
+
+#FBPost .Post {
+	width: 100%;
+	cursor: pointer;
+	text-align: center;
+	font-size: 2em;
+}
+
+#FBPost a, #FBPost a:visited, #FBPost a:active, #FBPost a:focus {
+	text-decoration: none;
+}
+
+#FBPost a img {
+	border: none;
+}
+
+#FBPost .Picture {
+	width: 120px;
+	overflow: hidden;
+}
+
+#FBPost .Picture img {
+	max-width: 120px;
+}
+
+
+/************************************************/
+/*                    PLUGINS                   */
+/************************************************/
+
+table.Data.Plugins td {
+	border: none;	
+}
+
+
+table.Data.Plugins h2 {
+	margin-bottom: 10px;
+}
+
+
+table.Data.Plugins td .Version {
+	font-style: italic;
+}
+
+table.Data.Plugins td div {
+	height: auto;	
+}
+
+table.Data.Plugins td .Author {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+table.Data.Plugins td p {
+	margin-bottom: 5px;	
+}

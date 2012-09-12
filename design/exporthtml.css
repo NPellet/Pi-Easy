@@ -1,0 +1,60 @@
+html, body {
+	font-family: "Trebuchet MS", Helvetica, Arial;
+	font-size: 12px;
+}
+
+body {
+	margin-top: 20px;
+}
+
+#Page {
+	margin: auto;
+	width: 1000px;
+}
+
+.Left {
+	width: 200px;
+	float: left;
+}
+
+.Left > div {
+	margin-bottom: 10px;
+	
+}
+
+h1 {
+	margin-top: 0px;
+}
+
+a {
+	color: black;
+	text-decoration: none;	
+}
+
+img {
+	max-width: 200px;
+}
+
+.Right {
+	float: left;
+	width: 800px;
+}
+
+label {
+	float: left;
+	font-weight: bold;
+	margin-left: 0px;
+	margin-right: 10px;
+	font-size: 14px;
+	position: relative;
+	margin-top: 0px;
+}
+
+.Spacer {
+	clear: both;
+	float: none;
+}
+
+div.Right > div {
+	margin-bottom: 10px;
+}

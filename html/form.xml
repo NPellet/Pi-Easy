@@ -1,0 +1,92 @@
+<?xml encoding="utf-8"?>
+<form>
+	<title>
+		<label>
+			<fr>Formulaire de contact</fr>
+			<en>Contact form</en>
+		</label>
+	</title>
+	<sections>
+		<section colspan="2">
+			<title>
+				<label>
+					<fr>Informations personnelles</fr>
+					<en>Personnal informations</en>
+				</label>
+			</title>
+			<field name="firstname" type="string" icon="" value="Norman">
+				<values>
+					<value>Norman</value>
+				</values>
+				<validations>
+					<validation type="format">
+						<label>
+							<fr>Votre prénom ne possède pas le bon format</fr>
+						</label>
+					</validation>
+					<validation type="null">
+						<label>
+							<fr>Vous devez remplir votre prénom</fr>
+						</label>
+					</validation>
+					<validation type="regex" value="^[a-z]*$">
+						<label>
+							<fr>Le REGEX n'est pas satisfait</fr>
+						</label>
+					</validation>
+				</validations>				
+			</field>
+			<field name="profession" type="options">
+				<options>
+					<option name="Blah">
+						<label>
+							<fr>Blah</fr>
+							<en>Blah</en>
+						</label>
+					</option>
+					<option name="Blah">
+						<label>
+							<fr>Blah</fr>
+							<en>Blah</en>
+						</label>
+					</option>
+				</options>
+			</field>
+		</section>
+	</sections>
+	<actions>
+		<action type="email">
+			<param name="email" value="norman.pellet@gmail.com"></param>
+			<param name="email" value="gilles.wenger@pi-com.ch"></param>
+			<param name="subject">Blah blah blah</param>
+			<param name="template">
+				Bonjour,
+				
+				Un nouvajhdfijhdfg
+				
+				
+				%profession
+				
+				
+				
+				
+				
+				
+			</param>
+			
+			
+		</action>
+		<action type="pieasy">
+			<param name="field" value-pieasy="dfjnb"
+			
+			
+			
+			
+		</action>
+		
+		
+	</actions>
+	
+	
+	
+</form>

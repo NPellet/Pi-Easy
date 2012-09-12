@@ -1,0 +1,44 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<lang>
+	<words>
+		<cancel>
+			<label>
+				<fr>Annuler</fr>
+			</label>
+			<value>
+				<fr>Annuler</fr>
+				<en>Cancel</en>
+			</value>
+		</cancel>
+		<ok>
+			<label>Continuer</label>
+			<value>
+				<fr>Continuer</fr>
+				<en>Continue</en>
+			</value>
+		</ok>
+	</words>
+	
+	<email>
+		<invitation>
+			<subject>
+				<label>
+					<fr>E-mail d'invitation</fr>
+				</label>
+				<value>
+					<fr>
+						Vous avez invité à un événement Affinités
+					</fr>
+				</value>
+			</subject>
+			<template>
+				<label>
+					<fr>Template de l'e-mail</fr>
+				</label>
+				<value>
+					<fr>Bonjour ! Voici les informations blah blah</fr>
+				</value>
+			</template>
+		</invitation>
+	</email>
+</lang>
