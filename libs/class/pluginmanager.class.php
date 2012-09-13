@@ -68,7 +68,7 @@ class PluginManager extends Security {
 
 		if($resSql = self::query($strSql)) {
 			if(mysql_num_rows($resSql) == 0) {
-				$p = preg_replace('![^a-zA-Z0-9_]!', '', $p);
+				$p = preg_replace('![^a-zA-Z0-9]!', '', $p);
 			} else if($dataSql = mysql_fetch_assoc($resSql))
 				$p = $dataSql['name'];
 		}
@@ -82,30 +82,26 @@ class PluginManager extends Security {
 		
 		if(!empty($_POST['formEntry'])) {
 
-
-			$strSql = '
-				INSERT INTO 
-					`' . Sql::buildTable(T_CFG_PLUGINS_PARAMETERS) . '`
-					(`idx_plugin`, `key`, `value`) 
-				VALUES
-					%s
-				ON DUPLICATE KEY UPDATE
-					`value` = "%s"
-					';
+			
 			$strEntries = NULL;
-		
 			foreach($parameters as $key => $value) {
-		
-				self::query(sprintf($strSql,
 				
-				'(' . $id . ', "' . $key . '", "' . Sql::secure((isset($_POST[$key]) ? $_POST[$key] : $value['value'])) . '")',
-				Sql::secure((isset($_POST[$key]) ? $_POST[$key] : $value['value'])) ));
+				$strSql = '
+					INSERT INTO
+						`' . Sql::buildTable(T_CFG_PLUGINS_PARAMETERS) . '`
+					
+					(`idx_plugin`, `key`, `value`) 
+					VALUES
+					("' . $id . '", "' . $key . '", "' . Sql::secure((!empty($_POST[$key]) ? $_POST[$key] : $value['value'])) . '")
+					
+					ON DUPLICATE KEY UPDATE
+					`value` = "' . Sql::secure((!empty($_POST[$key]) ? $_POST[$key] : $value['value'])) . '"';
 				
-				
-				
-				
-				$newParameters[$key]['value'] = (isset($_POST[$key]) ? $_POST[$key] : $value['value']);
+
+				self::query($strSql);
+				$newParameters[$key]['value'] = (!empty($_POST[$key]) ? $_POST[$key] : $value['value']);
 			}
+
 
 			$pluginFile = include(self::getFolder() . '/install.php');
 			$Installer = new PluginInstaller();

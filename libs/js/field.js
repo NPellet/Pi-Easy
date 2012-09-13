@@ -145,52 +145,24 @@ $(document).ready(function() {
 				$dom.find('img:first').attr('src', $.logoFromMime(file.type));
 			
 			$dom.find('a:first').attr('href', 'get_file.php?file=' + file.serverName);
-			$dom.find('input[rel=filename]').val(file.serverName);
-			$dom.find('input[rel=filetitle]').val(file.basename);
-			$dom.find('input[rel=fileext]').val(file.extension);
-			$dom.find('span[rel=filename]').html(file.basename);
-			$dom.find('input[rel=filefile]').val(file.serverName);
-			
+			$dom.find('input[type=hidden]').val(file.serverName);
+
+			$dom.find('input.Filename').val(file.basename);
+			$dom.find('.Extension span').html("." + file.extension);
+			$dom.find('.Extension input').val(file.extension);
 			$dom.removeClass('Hidden').hide().fadeIn('slow');
 		};
 		
 		checkFiles.call(this);
 
 		$(this).parent().parent().find('.Remove').bind('click', function() {
-			
-			$(this).parent().parent().parent().parent().parent().hide('slow', function() {
+			$(this).parent().parent().hide('slow', function() {
 				$(this).addClass('Hidden');
 				$(this).find('input[type=hidden]').val('');
 			});
 			
-			$(this).parent().parent().parent().parent().parent().parent().find('.UploadZone').parent().overlay('destroy');
+			$(this).parent().parent().parent().parent().parent().find('.UploadZone').parent().overlay('destroy');
 		});
-		
-		
-		$(this).parent().parent().find('.Edit').data('onSelect', function(btn, flag) {
-			
-			if(!flag)
-				return;
-			
-			var btn = $(btn);
-			var wrap = btn.parent().parent().parent();
-			var inputfilename = $('<input type="text" />').val(wrap.find('input[rel=filetitle]').val());
-			btn.data('input', inputfilename);
-			
-			wrap.find('span[rel=filename]').html(inputfilename);
-		}).data('onValidate', function(btn) {
-			
-			var btn = $(btn);
-			var wrap = btn.parent().parent().parent();
-			var filename = btn.data('input').val();
-			btn.data('input').replaceWith(filename);
-			
-			btn.data('input', null);
-			
-			wrap.find('input[rel=filetitle]').val(filename);
-		});
-		
-		
 		
 		$(this).parent().parent().find('.Add').bind('click', function() {
 			$(this).parent().parent().parent().find('.New').show('slow');		

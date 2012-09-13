@@ -45,8 +45,8 @@ class InfosFile {
 		
 		$strHtml = NULL;
 		foreach($props as $name => $prop)
-			$strHtml .= $name . ' = "' . $prop . '"
-			';
+			$strHtml .= '
+			' . $name . ' = "' . $prop . '"';
 
 		if(file_put_contents($this -> path . '.props', $strHtml))
 			return true;
@@ -56,7 +56,7 @@ class InfosFile {
 	}
 	
 	public function setPropsFromName($fileName) {
-		$parsedname = FileManager::parse($props['full_name']);
+		$parsedname = FileManager::parse($fileName);
 		$this -> setProp('full_name', $fileName);
 		$this -> setProp('filename', $parsedname['basename']);
 		$this -> setProp('mime', $this -> getMime());
@@ -69,10 +69,6 @@ class InfosFile {
 	
 	public function getPath() {
 		return $this -> path;
-	}
-	
-	public function setMime() {
-		$this -> setProp('mime', $this -> getMime());	
 	}
 	
 	public function getMime() {

@@ -50,7 +50,7 @@ class User extends Object {
 				}
 				return false;
 			} 
-			return self::log('sql:query');
+			return self::log('sql:0:3');
 		}
 	}
 	
@@ -77,13 +77,13 @@ class User extends Object {
 		$strSql = 'DELETE FROM `' . Sql::buildTable(T_CFG_SESSIONS) . '` WHERE `timeout` < ' . time();
 		
 		if(!self::query($strSql))
-			return self::log('sql:query');
+			return self::log('sql:0:3');
 	}
 	
 	public static function clearBruteforce() {
 		$strSql = 'DELETE FROM `' . Sql::buildTable(T_CFG_BRUTEFORCE) . '` WHERE `last` < ' . (time() - BRUTEFORCE_EXPIRACY);
 		if(!self::query($strSql)) 
-			return self::log('sql:query');
+			return self::log('sql:0:3');
 	}
 	
 	public static function checkBruteforce() {
@@ -154,7 +154,7 @@ class User extends Object {
 			} else
 				return self::log('login:0:1');
 		} else
-			self::log('sql:query');	
+			self::log('sql:0:3');	
 	}
 	
 	public function setSession($sessionId) {
@@ -170,7 +170,7 @@ class User extends Object {
 		ON DUPLICATE KEY UPDATE `timeout` = ' . (time() + SESSION_EXPIRACY) . ', `sessid` = "' . $sessionId . '"';
 		
 		if(!$this -> query($strSql))
-			return $this -> log('sql:query');
+			return $this -> log('sql:0:3');
 
 		setcookie('sessionId', $sessionId, time() + SESSION_EXPIRACY, '/');
 	}
@@ -209,7 +209,7 @@ class User extends Object {
 				$this -> id = mysql_insert_id();
 				
 		} else
-			return $this -> log('sql:query');
+			return $this -> log('sql:0:3');
 	
 		$sql = array();
 		if($this -> userAdmin()) {
@@ -278,7 +278,7 @@ class User extends Object {
 					$errors['username'] = 'Ce nom d\'utilisateur est déjà utilisé. Veuillez en choisir un autre';	
 			}
 		} else
-			return $this -> log('sql:query');
+			return $this -> log('sql:0:3');
 			
 		if($userPassword1 != $userPassword2)
 			$errors['password'] = 'Les mots de passe sont différents';	
@@ -432,7 +432,7 @@ class User extends Object {
 		if($this -> query($strSql))
 			return true;
 			
-		return $this -> log('sql:query');
+		return $this -> log('sql:0:3');
 	}
 }
 

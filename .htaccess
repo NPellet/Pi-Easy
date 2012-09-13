@@ -1,0 +1,16 @@
+
+Options +FollowSymlinks
+RewriteEngine on
+
+RewriteRule export/([a-z]*)-([a-z0-9]*)-([a-z0-9]*)\.html export/$1.php?module=$2&entry=$3 [L,QSA]
+RewriteRule html/(.*)\.html html/$1.html [L,QSA]
+RewriteRule (.*)\.html index.php?nav=$1 [L,QSA]
+
+
+
+
+
+
+
+
+

@@ -5,10 +5,10 @@ if(!defined('IN_PIEASY'))
 
 class FieldPicture extends Field {
 	
-	protected $imgHeight, $imgWidth, $imgThumb, $thumbHeight, $thumbWidth;
+	protected $imgHeight, $imgWidth, $imgThumb, $thbHeight, $thbWidth;
 	private $imgFolder, $adminFolder, $thumbFolder;
-	private $nbFiles;
-	private $urlFormat = 'get_file.php?file=<id>&field=<fieldid>';
+	private $nbFiles = 1;
+	private $urlFormat = 'get_file.php?file=%imgid%&field=%fieldid%';
 	
 	const FIELD_IMG_MAX_HEIGHT 	= 'img_maxi_h'; 
 	const FIELD_IMG_MAX_WIDTH 	= 'img_maxi_w';
@@ -27,7 +27,6 @@ class FieldPicture extends Field {
 			%s
 		</div>
 	</div>
-	
 	';
 
 	public function __construct($t_Data = NULL) {
@@ -40,8 +39,8 @@ class FieldPicture extends Field {
 		$this -> imgHeight 			= !empty($t_Data[self::FIELD_IMG_MAX_HEIGHT]) 	? $t_Data[self::FIELD_IMG_MAX_HEIGHT] : FIELD_IMG_MAXWIDTH;
 		$this -> imgWidth 			= !empty($t_Data[self::FIELD_IMG_MAX_WIDTH]) 	? $t_Data[self::FIELD_IMG_MAX_WIDTH] : FIELD_IMG_MAXHEIGHT;		
 		$this -> imgThumb 			= !empty($t_Data[self::FIELD_IMG_THUMB]) 		? $t_Data[self::FIELD_IMG_THUMB] : false;
-		$this -> thumbHeight	 	= !empty($t_Data[self::FIELD_THB_HEIGHT]) 		? $t_Data[self::FIELD_THB_HEIGHT] : NULL;
-		$this -> thumbWidth 		= !empty($t_Data[self::FIELD_THB_WIDTH]) 		? $t_Data[self::FIELD_THB_WIDTH] : NULL;
+		$this -> thbHeight		 	= !empty($t_Data[self::FIELD_THB_HEIGHT]) 		? $t_Data[self::FIELD_THB_HEIGHT] : NULL;
+		$this -> thbWidth 			= !empty($t_Data[self::FIELD_THB_WIDTH]) 		? $t_Data[self::FIELD_THB_WIDTH] : NULL;
 		$this -> nbFiles			= !empty($t_Data[self::NB_FILES])		 		? $t_Data[self::NB_FILES] : 1;
 		$this -> resImage 			= new Imagehandler();
 		
@@ -60,15 +59,14 @@ class FieldPicture extends Field {
 			$this -> imgFolder = $base;
 		}
 
-		
 /*		$this -> imgFolder = DATA_ROOT_REL . FOLDER_UPLOAD_MEDIAS;
 		$this -> thumbFolder = DATA_ROOT_REL . FOLDER_UPLOAD_MEDIAS . '/thumbs';
 	*/	
-	/* 10 juillet 2011 : Les textes sont maintenant enregistrés dans le fichier .props */
-	//	$this -> modFields = array();
-	//	$this -> modFields['files'] = 'VARCHAR( 250 ) NOT NULL';
-	//	$this -> modFields['text'] = 'VARCHAR( 250 ) NOT NULL';
+		$this -> modFields = array();
+		$this -> modFields['files'] = 'VARCHAR( 250 ) NOT NULL';
+		$this -> modFields['text'] 	= 'VARCHAR( 250 ) NOT NULL';
 	}
+
 	
 	public function getImgHeight() { return $this -> imgHeight; }
 	public function getImgWidth() { return $this -> imgWidth; }
@@ -82,15 +80,14 @@ class FieldPicture extends Field {
 	public function setImgHeight($intHeight) { $this -> imgHeight = intval($intHeight); }
 	public function setImgWidth($intWidth) { $this -> imgWidth = intval($intWidth); }
 	public function setThb($blnThb) { $this -> imgThumb = (bool) $blnThb; }
-	public function setThbWidth($thbWidth) { $this -> thumbWidth = intval($thbWidth); }
-	public function setThbHeight($thbHeight) { $this -> thumbHeight = intval($thbHeight); }
+	public function setThbWidth($thbWidth) { $this -> thbWidth = intval($thbWidth); }
+	public function setThbHeight($thbHeight) { $this -> thbHeight = intval($thbHeight); }
 	public function setNbFiles($nbFiles) { $this -> nbFiles = $nbFiles; }
 	
 	public function setImgFolder($folder) { $this -> imgFolder = $folder; }
 	public function setThbFolder($folder) { $this -> thumbFolder = $folder; }
 
 	public function setUrlFormat($format) { $this -> urlFormat = $format; } 
-	
 	
 	public function check($value) {
 	
@@ -101,64 +98,63 @@ class FieldPicture extends Field {
 	}
 	
 	public function treat($value) {
-		
+	
 		global $_baseUrl;
-		
 		if(!empty($value) && is_array($value)) {
-			$value['files'] = array_slice($value['files'], 0, $this -> nbFiles);
-			
-			
+		
+			$value['files'] = array_splice($value['files'], 0, $this -> nbFiles);
+
 			foreach($value['files'] as $key => $image) {
 				
-				$fname = $value['name'][$key];
+				$fname = $value['filename'][$key];
 				$fext = $value['ext'][$key];
 				if($image == NULL)
 					continue;
-				
+
 				if(file_exists($_baseUrl . DATA_ROOT_REL . FOLDER_UPLOAD_TEMP . $image)) {
-					
 					rename($_baseUrl . DATA_ROOT_REL . FOLDER_UPLOAD_TEMP . $image, $this -> imgFolder . $image);	
 					chmod($this -> imgFolder . $image, 0777);
-					FileManager::emptyTempFolder();
-
+				
 					$Infos = new InfosFile($this -> imgFolder . $image);
-					$Infos -> setProp('name', $fname);
-					$Infos -> setProp('ext', $value['ext'][$key]);
-					$Infos -> setProp('title', $value['title'][$key]);
-					$Infos -> setProp('description', $value['desc'][$key]);
-					$Infos -> setMime();
+					$Infos -> setPropsFromName($fname . '.' . $fext);
 					$Infos -> save();
+					
+					chmod($this -> imgFolder . $image . '.props', 0777);
+					
 					$this -> createThumbImage($this -> imgFolder . $image, $image, array($fname, $fext));			
 				}
 			}
-			
-			return implode(',', $value['files']);
+
+			return array('files' => implode(',', $value['files']), 'text' => implode(',', $value['text']));
 		}
 		
 		return NULL;
 	}
 	
+	
 	public function display($value) {
 		
-		global $_baseUrl;
-		$value = explode(',', $value);
-
+		if($this -> oneField) {
+			$value = explode(';', $value);
+			$value['text'] = $value[1];
+			$value['files'] = $value[0];
+		}
+		
+		$value = explode(',', $value['files']);
+	
 		$imgs = NULL;
 		foreach($value as $key => $img) {
 			
 			if($img != NULL) {
-				$pathFileMain = $_baseUrl . str_replace(array(
-					'<id>', '<fieldid>'				
-				), array(
-					$img, $this -> getId()
-				), $this -> urlFormat);	
+				$pathFileMain = str_replace(array('%imgid%', '%fieldid%', '%folder%'), array($img, $this -> getId(), str_replace('upload/', '', $this -> imgFolder)), $this -> urlFormat);
+					
 
 				if(!file_exists($this -> imgFolder . $img))
 					continue;
 					
 				$pathFileThumb = $pathFileMain . ($this -> imgThumb ? '&thb' : '');
 				$altText = $img;
-				$imgs .= '<a href="' . $pathFileMain . '" rel="box"><img src="' . $pathFileThumb . '" alt="" class="Image" /></a>';
+				$imgs .= '<a href="' . $pathFileMain . '" rel="box"><img src="' . $pathFileThumb . '" alt="' . @$texts[$key] . '" class="Image" /></a>';
 			}
 		}
 		
@@ -183,7 +179,16 @@ class FieldPicture extends Field {
 		
 		$fileExists = is_file($this -> imgFolder . $value);
 		$fieldName = $this -> formName();
-		$value = explode(',', $value);
+
+		if($this -> oneField) {
+			$value = explode(';', $value);
+			$value['text'] = $value[1];
+			$value['files'] = $value[0];
+		}
+		
+		
+		$texts = explode(',', $value['text']);
+		$value = explode(',', $value['files']);
 
 		$tImgs = array();
 		foreach($value as $key => $img) {
@@ -192,22 +197,22 @@ class FieldPicture extends Field {
 				continue;
 				
 			$fPath = $this -> imgFolder . $img;
-			$fPathThb = $this -> thumbFolder . $img;
+			$fPathThb = $this -> thumbFolder . $img; 
 			
 			$infos = new InfosFile($fPath);
 			$file = $infos -> getProps($infos);
 			
+			$fileName = Filemanager::parse($texts[$key]);
+			$fileName = $fileName['basename'];
+			
 			if(file_exists($fPath) && is_file($fPath))
 				$tImgs[] = array(
 					 'img' => $img, 
-					 'filepath' => $fPath,
-					 'filepaththumb' => $fPathThumb,
 					 'filename' => $file['name'], 
 					 'size' => FormatWeight(filesize($fPath)), 
 					 'uploaded' => FormatDate(filemtime($fPath)), 
 					 'thb' => file_exists($fPathThb),
-					 'desc' => $file['description'],
-					 'title' => $file['title'],
+					 'text' => $fileName,
 					 'ext' => $file['ext']
 				);
 		}
@@ -218,67 +223,52 @@ class FieldPicture extends Field {
 		$UploadZone -> allowMedia(true);
 		
 		$Delete = new Button('Remove', 'Supprimer');
-		$Edit = new Button('Edit', 'Editer');
-		$Edit -> setOptions(array('Selectable' => true, 'Validable' => true));
-		
 		$Add = new Button('Add', 'Ajouter');
 		
+	//	$Add -> setClass('Hidden');
+		
 		$strImages = NULL;
-		
-		
 		for($i = 0; $i < $this -> nbFiles; $i++) {
 
-			$img = array('img' => '', 'size' => '', 'filename' => '', 'uploaded' => '', 'thb' => '', 'ext' => '', 'name' => '', 'title' => '', 'desc' => '');
-			
-			if(isset($tImgs[$i])) {
-				$img = array_merge($img, $tImgs[$i]);
+			if(!isset($tImgs[$i])) {
+				$imgClass = ' Hidden';	
+				$img = array('img' => '', 'size' => '', 'uploaded' => '', 'thb' => '', 'text' => '', 'ext' => '', 'filename' => '');
+			} else {
 				$imgClass = NULL;
-			} else
-				$imgClass = ' Hidden';
-			
-			
-			$pathFileMain = $pathFileMain = $_baseUrl . str_replace(array(
-					'<id>', '<fieldid>'
-				), array(
-					$img['img'], $this -> getId()
-				), $this -> urlFormat);	
-			
-			
-			
+				$img = $tImgs[$i];
+			}
+		
+//			$pathFileMain = str_replace(array('%imgid%', '%fieldid%', '%folder%'), array($img['img'], $this -> getId(), $this -> imgFolder), $this -> urlFormat);
+			$pathFileMain = str_replace(array('%imgid%', '%fieldid%', '%folder%'), array($img['img'], $this -> getId(), str_replace('upload/', '', $this -> imgFolder)), $this -> urlFormat);	
 			$pathFileThumb = $pathFileMain . ($this -> imgThumb ? '&thb' : '');
+
+
 
 			$strImages .= '
 			<div class="CurrentFile' . $imgClass . '">
-				<div class="Content">
-					<a href="' . $pathFileMain . '" rel="box" />
-						<img src="' . (file_exists($img['filepaththumb']) ? $pathFileThumb : $pathFileMain) . '" />
-					</a>
+				<a href="' . $pathFileMain . '" rel="box" />
+					<img src="' . $pathFileThumb . '" />
+				</a>
+				<div class="UploadedTime">' . $img['uploaded'] . '</div>
+				<div class="UploadedSize">' . $img['size'] . '</div>
+												
+				<div class="UploadedFilename">
+					<label>Nom de l\'image :&nbsp;</label>
+					<input type="text" class="Field Text Filename" name="' . $fieldName . '[filename][]" value="' . $img['filename'] . '" /> 
+					<span class="Disabled Extension">
+						<span>.' . $img['ext'] . '</span>
+						<input type="hidden" name="' . $fieldName . '[ext][]" value="' . $img['ext'] . '" class="Fileext" />
+					</span>
 				</div>
 				
-				<div class="UploadedInfos">
-					<div class="Content">
-					
-						<label>Nom :</label><span rel="filename">' . $img['title'] . '</span>
-						<div class="Spacer"></div>
-						<label>Poids :</label><span rel="fileweight">' . $img['size'] . '</span>
-						<div class="Spacer"></div>
-						
-						<input rel="fileext" type="hidden" name="' . $fieldName . '[ext][]" value="' . $img['ext'] . '" />
-						<input rel="filename" type="hidden" name="' . $fieldName . '[name][]" value="' . $img['filename'] . '" />
-						<input rel="filetitle" type="hidden" name="' . $fieldName . '[title][]" value="' . $img['title'] . '" />
-						<input rel="filedesc" type="hidden" name="' . $fieldName . '[desc][]" value="' . $img['desc'] . '" />
-						<input rel="filefile" type="hidden" name="' . $fieldName . '[files][]" value="' . $img['img'] . '" />
-					
-					</div>
-					<div class="Spacer"></div>
-					<div>
-						<ul class="Actions Buttons">' . $Delete -> display() . '<li class="Spacer"></li>' . $Edit -> display() . '</ul>
-					</div>
+				<div class="UploadedText">
+					<label>Texte associé :&nbsp;</label>
+					<input type="text" class="Field Text Filetext" name="' . $fieldName . '[text][]" value="' . $img['text'] . '" /> 
 				</div>
-				
-				<div class="Spacer"></div>
-				
-				</div>
+
+				<ul class="Actions Buttons">' . $Delete -> display() . '</ul>
+				<input type="hidden" name="' . $fieldName . '[files][]" value="' . $img['img'] . '" />
+			</div>
 			';
 		}
 		
@@ -300,14 +290,14 @@ class FieldPicture extends Field {
 		$imageManager -> setImageAsFile($image);
 
 		if($this -> imgThumb) {
-			$imageManager -> process($this -> thumbWidth, $this -> thumbHeight, $this -> thumbFolder, $imagename);
-			/*
-			$Infos = new InfosFile($this -> thumbFolder . $imagename);
+			$imageManager -> process($this -> getThbWidth(), $this -> getThbHeight(), $this -> thumbFolder, $imagename);
+			
+			chmod($this -> thumbFolder . $imagename, 0777);
+			
+			
+		/*	$Infos = new InfosFile($this -> thumbFolder . $imagename);
 			$Infos -> setPropsFromName($props[0]);
-			$Infos -> setProp('title', $value['title'][$key]);
-			$Infos -> setProp('description', $value['desc'][$key]);
-			*/
-		//	$Infos -> save();
+			$Infos -> save();*/
 		}
 		
 		return $image;

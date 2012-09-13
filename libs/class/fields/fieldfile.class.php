@@ -25,7 +25,7 @@ class FieldFile extends Field {
 		global $_baseUrl;		
 		parent::__construct($t_Data);
 
-		$this -> nbFiles = !empty($t_Data['nb_files']) ? $t_Data['nb_files'] : 1;
+		$this -> nbFiles			= !empty($t_Data['nb_files']) ? $t_Data['nb_files'] : 1;
 
 		$Module = $this -> getModule();		
 
@@ -36,11 +36,10 @@ class FieldFile extends Field {
 			$base = $_baseUrl . DATA_ROOT_REL . FOLDER_UPLOAD_MEDIAS;
 			$this -> fleFolder = $base;
 		}
-/*
+
 		$this -> modFields = array();
 		$this -> modFields['files'] = 'VARCHAR( 250 ) NOT NULL';
 		$this -> modFields['text'] = 'VARCHAR( 250 ) NOT NULL';
-*/
 	}	
 	
 	
@@ -57,38 +56,46 @@ class FieldFile extends Field {
 	
 	public function treat($value) {
 		global $_baseUrl;
+
+		$texts = $value['text'];
 	
 		if(!empty($value) && is_array($value)) {
+			$value['files'] = array_splice($value['files'], 0, $this -> nbFiles);
 
 			foreach($value['files'] as $key => $file) {
 				
-				$fname = $value['name'][$key];
-			
+				$fname = $value['filename'][$key];
+				$fext = $value['ext'][$key];
+				
 				if($file == NULL)
 					continue;
 					
 				rename($_baseUrl . DATA_ROOT_REL . FOLDER_UPLOAD_TEMP . $file, $this -> fleFolder . $file);
 				$Infos = new InfosFile($this -> fleFolder . $file);
-
-				FileManager::emptyTempFolder();
-				
-				$Infos -> setProp('name', $fname);
-				$Infos -> setProp('ext', $value['ext'][$key]);
-				$Infos -> setProp('title', $value['title'][$key]);
-				$Infos -> setProp('description', $value['desc'][$key]);
-			
+				$Infos -> setPropsFromName($fname . '.' . $fext);
 				$Infos -> save();
+				
 			}
-			//echo implode(',', $value['files']);
-			return implode(',', $value['files']);
+			
+			if($this -> oneField) 
+				return implode(',', $value['files']) . ';' .  implode(',', $texts);
+			else
+				return array('files' => implode(',', $value['files']), 'text' => implode(',', $texts));
 		}
 		
 		return NULL;
 	}
 	
 	public function display($value) {
-		global $_baseUrl;
-		$value = explode(',', $value);
+	
+		if($this -> oneField) {
+			$value = explode(';', $value);
+			$value['text'] = $value[1];
+			$value['files'] = $value[0];
+		}
+		
+		$texts = explode(',', $value['text']);
+		$value = explode(',', $value['files']);
 	
 		$imgs = NULL;
 		foreach($value as $fle) {
@@ -97,14 +104,13 @@ class FieldFile extends Field {
 				
 				$infos = new InfosFile($this -> fleFolder . $fle);
 				$mime = $infos -> getMime();
-				$pathFileMain = $_baseUrl . 'get_file.php?file=' . $fle . '&field=' . $this -> getId();
-				$pathFileThumb = $_baseUrl . $this -> getLogo($mime);
+				$pathFileMain = 'get_file.php?file=' . $fle . '&field=' . $this -> getId();
+				$pathFileThumb = $this -> getLogo($mime);
 				
 				$altText = $fle;
 				$imgs .= '
 				<a href="' . $pathFileMain . '">
-					<img src="' . $pathFileThumb . '" alt="' . $infos -> getProp('name') . '" class="Image" />
-					' . (($infos -> getProp('title') != NULL) ? $infos -> getProp('title') : $infos -> getProp('name')) . '.' . $infos -> getProp('ext') . '
+					<img src="' . $pathFileThumb . '" alt="' . $altText . '" class="Image" />
 				</a>
 				';
 			}
@@ -122,42 +128,45 @@ class FieldFile extends Field {
 
 	public function showField($value, $error = false) {
 		
-	
 		$class = array();
 		if($error)
 			$class[] = FIELD_ERROR_CLASS;
 		
 		$class[] = 'Field';
 		$class[] = 'File';
-		$class = implode(' ' , $class) . ' ' . implode(' ', $this -> _class);
+		$class = implode(' ' , $class);
 		
 		$fileExists = is_file($this -> fleFolder . $value);
 		$fieldName = $this -> formName();
-		$value = explode(',', $value);
-
-		$tImgs = array();
+		
+		if($this -> oneField) {
+			$value = explode(';', $value);
+			$value['text'] = @$value[1];
+			$value['files'] = @$value[0];
+		}
+		
+		$texts = explode(',', $value['text']);
+		$value = explode(',', $value['files']);
+			
+		$tFles = array();
 		foreach($value as $key => $fle) {
 			
-			if($fle == NULL)
-				continue;
-				
-			$fPath = $this -> fleFolder . $fle;	
+			$fileName = Filemanager::parse($texts[$key]);
+			$fileExt = $fileName['extension'];
+			$fileName = $fileName['basename'];
+			
+			$fPath = $this -> fleFolder . $fle;
 			$infos = new InfosFile($fPath);
-			$file = $infos -> getProps($infos);
-		
-			$mime = $infos -> getMime();
-		
+			$mime = $infos -> getMime(); 
+			
 			if(file_exists($fPath) && is_file($fPath))
 				$tFles[] = array(
-					 'file' => $fle,
-					 'filename' => $file['name'], 
+					 'file' => $fle, 
 					 'size' => FormatWeight(filesize($fPath)), 
 					 'uploaded' => FormatDate(filemtime($fPath)), 
 					 'logo' => $this -> getLogo($mime),
-					 'text' => $file['name'],
-					 'ext' => $file['ext'],
-					 'desc' => $file['description'],
-					 'title' => $file['title']
+					 'text' => $fileName,
+					 'ext' => $fileExt
 				);
 		}
 		
@@ -168,66 +177,46 @@ class FieldFile extends Field {
 		
 		$Delete = new Button('Remove', 'Supprimer');
 		$Add = new Button('Add', 'Ajouter');
-		$Edit = new Button('Edit', 'Editer');
-		$Edit -> setOptions(array('Selectable' => true, 'Validable' => true));
+		//$Add -> setClass('Hidden');
 		
 		$strFiles = NULL;
 
 		for($i = 0; $i < $this -> nbFiles; $i++) {
 
-			$img = array(
-				'file' => '',
-				'filename' => '',
-				'size' => '',
-				'uploaded' => '',
-				'logo' => '',
-				'text' => '',
-				'ext' => '',
-				'desc' => '',
-				'title' => ''
-			);
-			
-			
-			$imgClass = NULL;
-			if(isset($tFles[$i]))
-				$img = array_merge($img, $tFles[$i]);			
-			else
-				$imgClass = ' Hidden';
+			if(!isset($tFles[$i])) {
+				$imgClass = ' Hidden';	
+				$img = array('file' => '', 'size' => '', 'uploaded' => '', 'logo' => '', 'text' => '', 'ext' => '');
+			} else {
+				$imgClass = NULL;
+				$img = $tFles[$i];	
+			}
 
-			$pathFileMain = 'get_file.php?file=' . $img['file'] . '&field=' . $this -> getId();
-			
+
 			$strFiles .= '
 			<div class="CurrentFile' . $imgClass . '">
-				<div class="Content">
-					<a href="' . $pathFileMain . '" />
-						<img src="' . $img['logo'] . '" />
-					</a>
+				<a href="get_file.php?file=' . $img['file'] . '&field=' . $this -> getId() . '" target="_blank" />
+					<img src="' . $img['logo'] . '" />
+				</a>
+				<div class="UploadedTime">' . $img['uploaded'] . '</div>
+				<div class="UploadedSize">' . $img['size'] . '</div>
+				
+				<div class="UploadedFilename">
+					<label>Nom du fichier : </label>
+					<input type="text" class="Field Text Filename" name="' . $fieldName . '[filename][]" value="' . $img['text'] . '" /> 
+					<span class="Disabled Extension">
+						<span>.' . $img['ext'] . '</span>
+						<input type="hidden" name="' . $fieldName . '[ext][]" value="' . $img['ext'] . '" class="Fileext" />
+					</span>
+				</div>
+		
+				<div class="UploadedText">
+					<label>Texte associé : </label>
+					<input type="text" class="Field Text" name="' . $fieldName . '[text][]" value="' . $img['text'] . '" class="Filetext" /> 
 				</div>
 				
-				<div class="UploadedInfos">
-					<div class="Content">
-					
-						<label>Nom :</label><span rel="filename">' . $img['title'] . '</span>
-						<div class="Spacer"></div>
-						<label>Poids :</label><span rel="fileweight">' . $img['size'] . '</span>
-						<div class="Spacer"></div>
-						
-						<input rel="fileext" type="hidden" name="' . $fieldName . '[ext][]" value="' . $img['ext'] . '" />
-						<input rel="filename" type="hidden" name="' . $fieldName . '[name][]" value="' . $img['filename'] . '" />
-						<input rel="filetitle" type="hidden" name="' . $fieldName . '[title][]" value="' . $img['title'] . '" />
-						<input rel="filedesc" type="hidden" name="' . $fieldName . '[desc][]" value="' . $img['desc'] . '" />
-						<input rel="filefile" type="hidden" name="' . $fieldName . '[files][]" value="' . $img['file'] . '" />
-					
-					</div>
-					<div class="Spacer"></div>
-					<div>
-						<ul class="Actions Buttons">' . $Delete -> display() . '<li class="Spacer"></li>' . $Edit -> display() . '</ul>
-					</div>
-				</div>
-				
-				<div class="Spacer"></div>
-				
-				</div>
+				<ul class="Buttons Actions">' . $Delete -> display() . '</ul>
+				<input type="hidden" name="' . $fieldName . '[files][]" value="' . $img['file'] . '" />
+			</div>
 			';
 		}
 	
@@ -285,13 +274,12 @@ class FieldFile extends Field {
 			case 'audio/mpeg':
 				$strPath .= 'mp3.gif';
 			break;
-			/*
-			case 'image/gif':
+			
+			/*case 'image/gif':
 			case 'image/png':
 			case 'image/jpeg':
 				$strPath .= 'pic.png';
-			break;
-			*/
+			break;*/
 	/*		
 			case 'text/html':
 				$strPath .= 'html.png';

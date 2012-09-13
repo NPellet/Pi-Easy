@@ -68,9 +68,9 @@ $.fn.upload = function(options) {
 				 terminateFile(file);	
 			else {
 				if(file.slice !== undefined)		
-					var slice = file.slice(initial, sliceSize);
+					var slice = file.slice(initial, initial + sliceSize);
 				else if(file.mozSlice !== undefined)
-					var slice = file.mozSlice(initial, sliceSize);
+					var slice = file.mozSlice(initial, initial + sliceSize);
 				else
 					var slice = file;
 					
@@ -84,7 +84,7 @@ $.fn.upload = function(options) {
 		function upload(file, content) {
 					
 			var xhr = new XMLHttpRequest();
-			xhr.timeout = 60000;
+			xhr.timeout = 6000000;
 			var self = this;
 			
 			xhr.upload.addEventListener("progress", function(evt) { 

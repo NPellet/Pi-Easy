@@ -89,7 +89,8 @@ $_tMessages['sql'] = array(
 						   
 	0 => array(
 		1 => 'La base de données est introuvable.',
-		2 => 'Connexion à la base de donnée refusée. Veuillez vérifier les données de connexion'
+		2 => 'Connexion à la base de donnée refusée. Veuillez vérifier les données de connexion',
+		3 => 'Erreur de requête SQL. Veillez contacter Pi-Com directement'
 	)
 );
 

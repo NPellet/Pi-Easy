@@ -787,6 +787,11 @@ table.Data td div {
 	cursor: pointer;
 }
 
+table.Data td img {
+	max-width: 100px;
+	max-height: 100px;
+}
+
 table.Data tr.Higher td div {
 	height: 50px;
 }
@@ -837,6 +842,12 @@ div.Overview .Label {
 	background: -moz-linear-gradient(top, #81acce, #1b69a6);
 	background: -webkit-gradient(linear, 0 0, 0 100%, from(#81acce), to(#1b69a6));
 	color: #FFF;
+}
+
+
+div.Overview img {
+	max-width: 100px;
+	max-height: 100px;
 }
 
 /*******************************/

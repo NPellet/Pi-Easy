@@ -5,7 +5,7 @@ if(!defined('IN_PIEASY'))
 	
 class Field extends Object {
 
-	protected $id, $name, $label, $type, $group, $required, $multilang, $rss, $fblike_fieldtype, $order, $priority, $helper, $placeholder;
+	protected $id, $name, $label, $type, $group, $required, $multilang, $rss, $fblike_fieldtype, $order, $priority = 3, $helper, $placeholder;
 	protected $errors;
 	protected $lang;
 	protected $oldName, $wasMultilang;
@@ -643,6 +643,7 @@ class Field extends Object {
 		$Priority -> setTitle('Priorité');
 		$Priority -> setHelper('Les priorités définissent les critères d\'apparitions des champs. Attention à la choisir soigneusement');
 		$Priority -> setField($FPriority -> showField($this -> priority, false));
+
 
 
 		$FFBLike = new FieldEnum();

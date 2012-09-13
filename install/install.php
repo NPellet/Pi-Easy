@@ -130,6 +130,9 @@ define(\'' . $k . '\', \'' . $d . '\');';
 		if(!isset($this -> data['DATA_ROOT'])) 
 			$this -> data['DATA_ROOT'] = 'upload/';
 
+		if(!isset($this -> data['FTP_ROOT'])) 
+			$this -> data['FTP_ROOT'] = 'ftp/';
+
 		if(!isset($this -> data['BASE_URL'])) 
 			$this -> data['BASE_URL'] = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 

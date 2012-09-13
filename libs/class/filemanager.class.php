@@ -28,8 +28,6 @@ class Filemanager extends Security {
 			break;
 		}
 		
-		chmod($folder . $forcedFilename, 0777);
-		
 		return false;
 	}
 	
@@ -72,7 +70,7 @@ class Filemanager extends Security {
 		return copy($source, $destination) ? true : self::log('file:0:8');
 	}
 	
-	public static function remove($filePath, $logError = true) {
+	public static function remove($filePath, $logError = true, $removeSelf = true) {
 		
 		if(!file_exists($filePath))
 			return $logError ? self::log('file:0:9') : false;
@@ -84,33 +82,17 @@ class Filemanager extends Security {
 				
 				if($file == '.' || $file == '..')
 					continue;
-
-				Filemanager::remove($filePath . '/' . $file);
-			}
-		}
-		return (is_dir($filePath) ? rmdir($filePath) : unlink($filePath)) ? true : ($logError ? self::log('file:0:10') : false);
-	}
-
-	public static function empty($dirPath) {
-
-		if(is_dir($dirPath)) {
-			
-			$dir = opendir($dirPath);
-			while($file = readdir($dir)) {
 				
-				if($file == '.' || $file == '..')
-					continue;
-
 				Filemanager::remove($filePath . '/' . $file);
 			}
+			//return true;
 		}
+		
+		if($removeSelf)
+			return (is_dir($filePath) ? rmdir($filePath) : unlink($filePath)) ? true : ($logError ? self::log('file:0:10') : false);
 	}
 	
-	public static function emptyTempFolder() {
-		global $_baseUrl;
-		self::empty($_baseUrl . DATA_ROOT_REL . FOLDER_UPLOAD_TEMP);
-	}
-
+	
 	public static function parse($filename) {
 	
 		$fname = strrpos($filename, '/') ? substr($filename, strrpos($filename, '/') + 1) : $filename;
@@ -123,6 +105,7 @@ class Filemanager extends Security {
 			
 		return array('basename' => $filename, 'extension' => $extension, 'fullname' => $fname);
 	}
+	
 	
 	public static function getExternal($file) {
 		
